@@ -1,0 +1,34 @@
+# vim: ts=2 sw=2 et
+version: '3.6'
+
+services:
+  squid-zscaler-noauth:
+    build: ./squid-zscaler
+    image: squid-zscaler
+    ports:
+      - "4128:3128"
+
+  squid-zscaler-auth:
+    # build: ./squid-zscaler
+    image: squid-zscaler
+    ports:
+          - "4129:3128"
+    environment:
+      - AUTH_USER=insights
+      - AUTH_PASSWORD=test123
+      - AUTH=1
+
+  squid-classic-noauth:
+    build: ./squid-classic
+    image: squid-classic
+    ports:
+          - "3129:3128"
+
+  squid-classic-auth:
+    image: squid-classic
+    ports:
+          - "3128:3128"
+    environment:
+      - AUTH_USER=insights
+      - AUTH_PASSWORD=test123
+      - AUTH=1

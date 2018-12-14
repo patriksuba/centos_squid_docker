@@ -1,0 +1,12 @@
+--- src/client_side_request.cc	2018-10-27 20:44:55.000000000 +0000
++++ src/client_side_request_new.cc	2018-12-13 17:28:06.641879341 +0000
+@@ -1610,7 +1610,7 @@
+
+     // send an HTTP 200 response to kick client SSL negotiation
+     // TODO: Unify with tunnel.cc and add a Server(?) header
+-    static const char *const conn_established = "HTTP/1.1 200 Connection established\r\n\r\n";
++    static const char *const conn_established = "HTTP/1.1 200 Connection Established\r\n\r\n";
+     Comm::Write(getConn()->clientConnection, conn_established, strlen(conn_established), bumpCall, NULL);
+ }
+
+
