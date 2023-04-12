@@ -32,3 +32,16 @@ services:
       - AUTH_USER=insights
       - AUTH_PASSWORD=test123
       - AUTH=1
+
+  squid-icap-noauth:
+    image: squid-classic
+    ports:
+          - "5129:3128"
+    environment:
+      - ICAP=1
+
+  python-icap-server:
+    build: ./icap-server
+    image: python-icap-server
+    ports:
+          - "1344:1344"

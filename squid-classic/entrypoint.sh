@@ -21,7 +21,8 @@ if [ ${AUTH} -eq 1 ];then
   echo "Create passwords file for squid"
   echo ${AUTH_PASSWORD:test123} | htpasswd -i -c /etc/squid/passwords ${AUTH_USER:insights}
   cp /etc/squid/squid-auth.conf /etc/squid/squid.conf
-
+elif [ ${ICAP} -eq 1 ];then
+  cp /etc/squid/squid-icap-noauth.conf /etc/squid/squid.conf
 else
   cp /etc/squid/squid-noauth.conf /etc/squid/squid.conf
 fi

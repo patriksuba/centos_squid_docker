@@ -14,6 +14,7 @@ RUN yum install -y squid which httpd-tools && \
 ADD ./entrypoint.sh /sbin/
 ADD ./squid-noauth.conf /etc/squid/squid-noauth.conf
 ADD ./squid-auth.conf /etc/squid/squid-auth.conf
+ADD ./squid-icap-noauth.conf /etc/squid/squid-icap-noauth.conf
 
 EXPOSE 3128/tcp
 ENTRYPOINT ["/sbin/entrypoint.sh"]
