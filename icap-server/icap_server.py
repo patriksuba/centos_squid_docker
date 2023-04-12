@@ -13,9 +13,15 @@ class ICAPHandler(BaseICAPRequestHandler):
         self.send_headers(False)
 
     def echo_RESPMOD(self):
-        self.set_icap_response(502)
+        self.set_icap_response(200)
         print("Response")
-        self.send_headers(True)
+        if b'system_id' in self.enc_res_headers[1]:
+            self.set_enc_status(b'HTTP/1.1 502 Bad Gateway')
+            self.set_enc_header(b'detail', b'System unauthorized')
+            self.send_headers(True)
+            return
+            
+        self.no_adaptation_required()
 
 port = 1344
 server = ThreadingSimpleServer(('127.0.0.1', port), ICAPHandler)
